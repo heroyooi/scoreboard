@@ -18,6 +18,7 @@
 }
 
 .scoreboard-side {
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -72,7 +73,7 @@
 }
 
 .scoreboard-side__score {
-  font-size: clamp(12rem, 34vw, 32rem);
+  font-size: clamp(12rem, 30vw, 28rem);
   line-height: 1;
   font-weight: 700;
   letter-spacing: 0.06em;
