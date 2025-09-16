@@ -4,6 +4,8 @@ import { Page } from 'framework7-react';
 const HomePage = () => {
   const [leftScore, setLeftScore] = useState(0);
   const [rightScore, setRightScore] = useState(0);
+  const [leftSets, setLeftSets] = useState(0);
+  const [rightSets, setRightSets] = useState(0);
 
   const incrementLeft = useCallback(() => {
     setLeftScore((score) => score + 1);
@@ -16,6 +18,8 @@ const HomePage = () => {
   const resetScores = useCallback(() => {
     setLeftScore(0);
     setRightScore(0);
+    setLeftSets(0);
+    setRightSets(0);
   }, []);
 
   const decrementLeft = useCallback(() => {
@@ -26,10 +30,26 @@ const HomePage = () => {
     setRightScore((score) => Math.max(0, score - 1));
   }, []);
 
+  const incrementLeftSets = useCallback(() => {
+    setLeftSets((sets) => (sets + 1) % 10);
+  }, []);
+
+  const incrementRightSets = useCallback(() => {
+    setRightSets((sets) => (sets + 1) % 10);
+  }, []);
+
   return (
     <Page name="home" className="scoreboard-page">
       <div className="scoreboard-layout">
         <div className="scoreboard-side scoreboard-side--left">
+          <button
+            type="button"
+            className="scoreboard-side__set scoreboard-side__set--right"
+            aria-label="Increase left set wins"
+            onClick={incrementLeftSets}
+          >
+            {leftSets}
+          </button>
           <button
             type="button"
             className="scoreboard-side__main"
@@ -56,6 +76,14 @@ const HomePage = () => {
           </button>
         </div>
         <div className="scoreboard-side scoreboard-side--right">
+          <button
+            type="button"
+            className="scoreboard-side__set scoreboard-side__set--left"
+            aria-label="Increase right set wins"
+            onClick={incrementRightSets}
+          >
+            {rightSets}
+          </button>
           <button
             type="button"
             className="scoreboard-side__main"
