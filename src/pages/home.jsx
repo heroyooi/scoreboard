@@ -1,74 +1,60 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Page,
   Navbar,
-  NavLeft,
   NavTitle,
-  NavTitleLarge,
   NavRight,
   Link,
-  Toolbar,
-  Block,
-  BlockTitle,
-  List,
-  ListItem,
-  Button
 } from 'framework7-react';
 
-const HomePage = () => (
-  <Page name="home">
-    {/* Top Navbar */}
-    <Navbar large sliding={false}>
-      <NavLeft>
-        <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left" />
-      </NavLeft>
-      <NavTitle sliding>Scoreboard</NavTitle>
-      <NavRight>
-        <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="right" />
-      </NavRight>
-      <NavTitleLarge>Scoreboard</NavTitleLarge>
-    </Navbar>
-    {/* Toolbar */}
-    <Toolbar bottom>
-      <Link>Left Link</Link>
-      <Link>Right Link</Link>
-    </Toolbar>
-    {/* Page content */}
-    <Block>
-      <p>Here is your blank Framework7 app. Let's see what we have here.</p>
-    </Block>
-    <BlockTitle>Navigation</BlockTitle>
-    <List strong inset dividersIos>
-      <ListItem link="/about/" title="About"/>
-      <ListItem link="/form/" title="Form"/>
-    </List>
+const HomePage = () => {
+  const [leftScore, setLeftScore] = useState(0);
+  const [rightScore, setRightScore] = useState(0);
 
-    <BlockTitle>Modals</BlockTitle>
-    <Block className="grid grid-cols-2 grid-gap">
-      <Button fill popupOpen="#my-popup">Popup</Button>
-      <Button fill loginScreenOpen="#my-login-screen">Login Screen</Button>
-    </Block>
+  const incrementLeft = useCallback(() => {
+    setLeftScore((score) => score + 1);
+  }, []);
 
-    <BlockTitle>Panels</BlockTitle>
-    <Block className="grid grid-cols-2 grid-gap">
-      <Button fill panelOpen="left">Left Panel</Button>
-      <Button fill panelOpen="right">Right Panel</Button>
-    </Block>
+  const incrementRight = useCallback(() => {
+    setRightScore((score) => score + 1);
+  }, []);
 
-    <List strong inset dividersIos>
-      <ListItem
-        title="Dynamic (Component) Route"
-        link="/dynamic-route/blog/45/post/125/?foo=bar#about"
-      />
-      <ListItem
-        title="Default Route (404)"
-        link="/load-something-that-doesnt-exist/"
-      />
-      <ListItem
-        title="Request Data & Load"
-        link="/request-and-load/user/123456/"
-      />
-    </List>
-  </Page>
-);
+  const resetScores = useCallback(() => {
+    setLeftScore(0);
+    setRightScore(0);
+  }, []);
+
+  return (
+    <Page name="home" className="scoreboard-page">
+      <Navbar>
+        <NavTitle>Scoreboard</NavTitle>
+        <NavRight>
+          <Link iconF7="arrow_counterclockwise" aria-label="Reset scores" onClick={resetScores} />
+        </NavRight>
+      </Navbar>
+      <div className="scoreboard-layout">
+        <button
+          type="button"
+          className="scoreboard-side scoreboard-side--left"
+          onClick={incrementLeft}
+        >
+          <span className="scoreboard-side__label">LEFT</span>
+        </button>
+        <div className="scoreboard-display">
+          <span className="scoreboard-display__score">{leftScore}</span>
+          <span className="scoreboard-display__separator">:</span>
+          <span className="scoreboard-display__score">{rightScore}</span>
+        </div>
+        <button
+          type="button"
+          className="scoreboard-side scoreboard-side--right"
+          onClick={incrementRight}
+        >
+          <span className="scoreboard-side__label">RIGHT</span>
+        </button>
+      </div>
+    </Page>
+  );
+};
+
 export default HomePage;
