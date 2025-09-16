@@ -1,11 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import {
-  Page,
-  Navbar,
-  NavTitle,
-  NavRight,
-  Link,
-} from 'framework7-react';
+import { Page } from 'framework7-react';
 
 const HomePage = () => {
   const [leftScore, setLeftScore] = useState(0);
@@ -24,31 +18,59 @@ const HomePage = () => {
     setRightScore(0);
   }, []);
 
+  const decrementLeft = useCallback(() => {
+    setLeftScore((score) => Math.max(0, score - 1));
+  }, []);
+
+  const decrementRight = useCallback(() => {
+    setRightScore((score) => Math.max(0, score - 1));
+  }, []);
+
   return (
     <Page name="home" className="scoreboard-page">
-      <Navbar>
-        <NavTitle>동광태권도 점수판</NavTitle>
-        <NavRight>
-          <Link iconF7="arrow_counterclockwise" aria-label="Reset scores" onClick={resetScores} />
-        </NavRight>
-      </Navbar>
       <div className="scoreboard-layout">
-        <button
-          type="button"
-          className="scoreboard-side scoreboard-side--left"
-          onClick={incrementLeft}
-        >
-          <span className="scoreboard-side__score">{leftScore}</span>
-          <span className="scoreboard-side__label">LEFT</span>
-        </button>
-        <button
-          type="button"
-          className="scoreboard-side scoreboard-side--right"
-          onClick={incrementRight}
-        >
-          <span className="scoreboard-side__score">{rightScore}</span>
-          <span className="scoreboard-side__label">RIGHT</span>
-        </button>
+        <div className="scoreboard-side scoreboard-side--left">
+          <button
+            type="button"
+            className="scoreboard-side__main"
+            onClick={incrementLeft}
+          >
+            <span className="scoreboard-side__score">{leftScore}</span>
+          </button>
+          <button
+            type="button"
+            className="scoreboard-side__adjust"
+            onClick={decrementLeft}
+          >
+            -1
+          </button>
+        </div>
+        <div className="scoreboard-controls">
+          <button
+            type="button"
+            className="scoreboard-reset"
+            aria-label="Reset scores"
+            onClick={resetScores}
+          >
+            <i className="f7-icons">arrow_counterclockwise</i>
+          </button>
+        </div>
+        <div className="scoreboard-side scoreboard-side--right">
+          <button
+            type="button"
+            className="scoreboard-side__main"
+            onClick={incrementRight}
+          >
+            <span className="scoreboard-side__score">{rightScore}</span>
+          </button>
+          <button
+            type="button"
+            className="scoreboard-side__adjust"
+            onClick={decrementRight}
+          >
+            -1
+          </button>
+        </div>
       </div>
     </Page>
   );
