@@ -1,5 +1,6 @@
 var capacitorApp = {
   f7: null,
+  exitAppConfirmDialog: null,
   /*
   This method hides splashscreen after 2 seconds
   */
@@ -21,6 +22,7 @@ var capacitorApp = {
     var f7 = capacitorApp.f7;
     const $ = f7.$;
     if (!window.Capacitor || !window.Capacitor.Plugins.App) return;
+    const capacitorAppPlugin = window.Capacitor.Plugins.App;
     window.Capacitor.Plugins.App.addListener(
       'backButton',
       function () {
@@ -76,6 +78,34 @@ var capacitorApp = {
           f7.panel.close('.panel.panel-in');
           return;
         }
+
+        if (!capacitorApp.exitAppConfirmDialog) {
+          capacitorApp.exitAppConfirmDialog = f7.dialog.create({
+            cssClass: 'exit-app-confirm-dialog',
+            title: '앱 종료',
+            text: '앱을 종료하시겠습니까?',
+            buttons: [
+              {
+                text: '취소',
+                color: 'gray',
+              },
+              {
+                text: '종료',
+                color: 'red',
+                onClick: () => {
+                  capacitorAppPlugin.exitApp();
+                },
+              },
+            ],
+            on: {
+              closed: () => {
+                capacitorApp.exitAppConfirmDialog = null;
+              },
+            },
+          });
+        }
+
+        capacitorApp.exitAppConfirmDialog.open();
       },
       false,
     );
