@@ -12,8 +12,7 @@
 
 .scoreboard-layout {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr minmax(80px, 18vw) 1fr;
+  display: flex;
   align-items: stretch;
   min-height: 0;
 }
@@ -28,14 +27,23 @@
   padding: 2.5rem 1.5rem 2rem;
   min-width: 0;
   min-height: 0;
+  flex-grow: 1;
 }
 
 .scoreboard-side--left {
+  position: relative;
   background: linear-gradient(135deg, #ff7875, #ff4d4f);
+  .scoreboard-side__adjust {
+    right: 30px;
+  }
 }
 
 .scoreboard-side--right {
+  position: relative;
   background: linear-gradient(135deg, #69c0ff, #1677ff);
+  .scoreboard-side__adjust {
+    left: 30px;
+  }
 }
 
 .scoreboard-side__main {
@@ -64,7 +72,7 @@
 }
 
 .scoreboard-side__score {
-  font-size: clamp(4.5rem, 14vw, 9rem);
+  font-size: clamp(12rem, 34vw, 32rem);
   line-height: 1;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -72,6 +80,10 @@
 }
 
 .scoreboard-side__adjust {
+  position: absolute;
+  bottom: 30px;
+  display: inline-block;
+  width: auto;
   align-self: center;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(0, 0, 0, 0.2);
@@ -97,13 +109,15 @@
 }
 
 .scoreboard-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem 1rem;
-  background: #0d1117;
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  // padding: 1.5rem 1rem;
+  // background: #0d1117;
   color: #ffffff;
-  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.15), inset -1px 0 0 rgba(255, 255, 255, 0.15);
+  // box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.15), inset -1px 0 0 rgba(255, 255, 255, 0.15);
 }
 
 .scoreboard-reset {
@@ -146,9 +160,9 @@
     gap: 1.25rem;
   }
 
-  .scoreboard-side__score {
-    font-size: clamp(3.5rem, 22vw, 7rem);
-  }
+  // .scoreboard-side__score {
+  //   font-size: clamp(3.5rem, 22vw, 7rem);
+  // }
 
   .scoreboard-side__adjust {
     font-size: 1.1rem;
