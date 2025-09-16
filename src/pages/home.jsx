@@ -27,7 +27,7 @@ const HomePage = () => {
   return (
     <Page name="home" className="scoreboard-page">
       <Navbar>
-        <NavTitle>Scoreboard</NavTitle>
+        <NavTitle>동광태권도 점수판</NavTitle>
         <NavRight>
           <Link iconF7="arrow_counterclockwise" aria-label="Reset scores" onClick={resetScores} />
         </NavRight>
