@@ -38,18 +38,15 @@ const HomePage = () => {
           className="scoreboard-side scoreboard-side--left"
           onClick={incrementLeft}
         >
+          <span className="scoreboard-side__score">{leftScore}</span>
           <span className="scoreboard-side__label">LEFT</span>
         </button>
-        <div className="scoreboard-display">
-          <span className="scoreboard-display__score">{leftScore}</span>
-          <span className="scoreboard-display__separator">:</span>
-          <span className="scoreboard-display__score">{rightScore}</span>
-        </div>
         <button
           type="button"
           className="scoreboard-side scoreboard-side--right"
           onClick={incrementRight}
         >
+          <span className="scoreboard-side__score">{rightScore}</span>
           <span className="scoreboard-side__label">RIGHT</span>
         </button>
       </div>

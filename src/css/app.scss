@@ -16,28 +16,29 @@
 
 .scoreboard-layout {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  display: flex;
   align-items: stretch;
   min-height: 0;
 }
 
 .scoreboard-side {
+  flex: 1;
   border: none;
-  background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.75rem;
   color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   padding: 1rem;
-  width: 100%;
-  height: 100%;
+  min-width: 0;
   cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s ease;
+}
+
+.scoreboard-side:active {
+  transform: scale(0.97);
 }
 
 .scoreboard-side:focus-visible {
@@ -53,43 +54,30 @@
   background: linear-gradient(135deg, #69c0ff, #1677ff);
 }
 
-.scoreboard-display {
-  align-self: center;
-  justify-self: center;
-  background: #111111;
-  color: #ffffff;
-  border-radius: 24px;
-  padding: 2rem 3rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  text-align: center;
-}
-
-.scoreboard-display__score {
-  font-size: clamp(3rem, 8vw, 6rem);
+.scoreboard-side__score {
+  font-size: clamp(4rem, 12vw, 8rem);
   line-height: 1;
   font-weight: 700;
-  min-width: 3ch;
-}
-
-.scoreboard-display__separator {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 300;
+  letter-spacing: 0.06em;
 }
 
 .scoreboard-side__label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
   opacity: 0.85;
 }
 
 @media (max-width: 768px) {
-  .scoreboard-display {
-    padding: 1.5rem 2rem;
-    gap: 1rem;
+  .scoreboard-side {
+    padding: 2rem 1rem;
   }
 
-  .scoreboard-side {
-    font-size: 1.2rem;
+  .scoreboard-side__score {
+    font-size: clamp(3rem, 22vw, 6rem);
+  }
+
+  .scoreboard-side__label {
+    font-size: 1rem;
   }
 }
