@@ -18,7 +18,6 @@ const HomePage = () => {
   const resetScores = useCallback(() => {
     setLeftScore(0);
     setRightScore(0);
-    setLeftSets(0);
   }, []);
 
   const decrementLeft = useCallback(() => {

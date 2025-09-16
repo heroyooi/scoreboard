@@ -111,7 +111,7 @@
   position: relative;
   background: linear-gradient(135deg, #ff7875, #ff4d4f);
   .scoreboard-side__adjust {
-    right: 30px;
+    right: 20px;
   }
   .scoreboard-side__set--right {
     right: 0;
@@ -124,7 +124,7 @@
   position: relative;
   background: linear-gradient(135deg, #69c0ff, #1677ff);
   .scoreboard-side__adjust {
-    left: 30px;
+    left: 20px;
   }
   .scoreboard-side__set--left {
     left: 0;
@@ -168,7 +168,7 @@
 
 .scoreboard-side__adjust {
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   display: inline-block;
   width: auto;
   align-self: center;
@@ -203,8 +203,8 @@
 .scoreboard-controls {
   position: absolute;
   z-index: 5;
-  left: 30px;
-  bottom: 30px;
+  left: 20px;
+  bottom: 20px;
   top: auto;
   transform: none;
   // padding: 1.5rem 1rem;
@@ -214,10 +214,10 @@
 }
 
 .scoreboard-reset {
-  width: clamp(56px, 11vw, 82px);
+  width: clamp(28px, 6vw, 41px);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   background: rgba(13, 17, 23, 0.9);
   color: inherit;
   display: flex;
@@ -231,7 +231,7 @@
 }
 
 .scoreboard-reset i {
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
 }
 
 .scoreboard-reset:active {
@@ -240,7 +240,7 @@
 }
 
 .scoreboard-reset:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline: 2px solid rgba(255, 255, 255, 0.85);
   outline-offset: 4px;
 }
 
@@ -271,8 +271,8 @@
   }
 
   .scoreboard-controls {
-    left: 20px;
-    bottom: 20px;
+    left: 10px;
+    bottom: 10px;
   }
 
   .scoreboard-side {
