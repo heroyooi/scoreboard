@@ -19,7 +19,6 @@ const HomePage = () => {
     setLeftScore(0);
     setRightScore(0);
     setLeftSets(0);
-    setRightSets(0);
   }, []);
 
   const decrementLeft = useCallback(() => {
