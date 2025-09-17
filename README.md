@@ -47,6 +47,17 @@ npm install
 * 📱 `build-capacitor-ios` - build app and copy it to iOS capacitor project
 * 📱 `build-capacitor-android` - build app and copy it to Android capacitor project
 
+## Deploying to Vercel
+
+To host the web build on [Vercel](https://vercel.com):
+
+1. Commit the included `vercel.json` so Vercel knows to run `npm run build` and publish the generated `www` directory. The configuration also hints Vercel to use its built-in Vite optimizations.
+2. Push the repository to GitHub (or another Git provider supported by Vercel) and import the project in the Vercel dashboard.
+3. When prompted for build settings, keep the defaults—thanks to `vercel.json` the build command will be `npm run build` and the output directory will be `www`.
+4. Trigger a deployment; after the first successful build, every push to the selected branch will redeploy automatically.
+
+If you prefer to configure things manually in the dashboard instead of relying on `vercel.json`, set the **Build Command** to `npm run build` and the **Output Directory** to `www`, matching the Vite configuration in `vite.config.js`.
+
 ## Vite
 
 There is a [Vite](https://vitejs.dev) bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Vite config located in `vite.config.js`.
